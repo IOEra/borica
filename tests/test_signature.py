@@ -24,5 +24,8 @@ def test_signature():
     bytes_result = signature.sign('Something very secret')
     result = 0
     for b in bytes_result:
-        result = result + int(b)
+        try:
+            result = result + ord(b)
+        except TypeError:
+            result = result + int(b)
     assert result == 16511
