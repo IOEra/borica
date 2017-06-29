@@ -86,7 +86,7 @@ class Request:
         return "".join([
             self.fill(self.transaction_type, 2),
             self.fill(self.transaction_timestamp.strftime('%Y%m%d%H%M%S'), 14),
-            self.fill(self.transaction_amount, 12, char=b'0', right=True),
+            self.fill(self.transaction_amount, 12, char='0', right=True),
             self.fill(self.terminal_id, 8),
             self.fill(self.order_id, 15),
             self.fill(self.order_summary, 125),
