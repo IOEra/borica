@@ -83,7 +83,7 @@ class Request:
 
     @property
     def unsigned_content(self):
-        return "".join([
+        return ''.join([
             self.fill(self.transaction_type, 2),
             self.fill(self.transaction_timestamp.strftime('%Y%m%d%H%M%S'), 14),
             self.fill(self.transaction_amount, 12, char='0', right=True),

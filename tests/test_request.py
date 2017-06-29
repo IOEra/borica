@@ -5,7 +5,7 @@ from borica import Request
 
 class FakeSignature:
     def sign(self, content):
-        return 'G' * 128
+        return b'G' * 128
 
 
 def test_general_request_base64_formatting():

@@ -10,5 +10,5 @@ class Signature:
     def sign(self, content):
         rsakey = RSA.importKey(self._key)
         signer = PKCS1_v1_5.new(rsakey)
-        digest = SHA.new(content)
+        digest = SHA.new(content.encode('utf-8'))
         return signer.sign(digest)
