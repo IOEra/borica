@@ -5,6 +5,11 @@ Low-level Python integration for Borica payment gateway.
 ## Usage
 
 ```
+from borica import Signature, Request
+
+key = open('path/to/private.key').read()
+signature = Signature(key)
+
 request = Request(
   transaction_type=transaction_type,
   transaction_amount=amount,
