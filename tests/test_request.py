@@ -12,7 +12,7 @@ def test_general_request_base64_formatting():
     request = Request(
         transaction_type=10,
         transaction_amount='99.99',
-        transaction_timestamp=datetime.datetime.fromtimestamp(0),
+        transaction_timestamp=datetime.datetime(1970, 1, 1, 2, 0),
         terminal_id='12345678',
         order_id='12345678',
         order_summary='Money for fun!',
