@@ -1,4 +1,3 @@
-import struct
 from borica import Signature
 
 
