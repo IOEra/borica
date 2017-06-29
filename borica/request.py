@@ -76,10 +76,10 @@ class Request:
                 str(of), str(value)))
 
     @staticmethod
-    def fill(object, length, char=b' ', right=False):
+    def fill(object, length, char=' ', right=False):
         truncated = str(object)[0:length]
         just = [truncated.ljust, truncated.rjust][right]
-        return just(length, char)
+        return just(length, str(char))
 
     @property
     def unsigned_content(self):
