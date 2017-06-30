@@ -1,4 +1,5 @@
 import base64
+import binascii
 
 
 class Response:
@@ -10,6 +11,9 @@ class Response:
         return base64.b64decode(self._response)
 
     def verify(self, verifier):
-        payload = self.response_decoded[0:len(self.response_decoded) - 128]
-        signature = self.response_decoded[56:]
-        return verifier.verify(payload, signature)
+        try:
+            payload = self.response_decoded[0:len(self.response_decoded) - 128]
+            signature = self.response_decoded[56:]
+            return verifier.verify(payload, signature)
+        except binascii.Error:
+            return False

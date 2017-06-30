@@ -14,7 +14,7 @@ class Verifier:
         verifier = PKCS1_v1_5.new(key)
         digest = SHA.new(payload)
         result = verifier.verify(digest, signature)
-        return result
+        return result is True
 
     @property
     def public_key(self):

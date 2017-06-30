@@ -31,3 +31,17 @@ def test_response():
     verifier = Verifier(CERTIFICATE)
     response = Response(RESPONSE)
     assert response.verify(verifier) is True
+
+
+def test_bad_signature_response():
+    RESPONSE = "MTAyMDE3MDYzMDEyMzU0MDAwMDAwMDAwMDAwOTYyMTYxMDcyMTIzNDUxMjM0NTEyMzQxOTQxLjG/Iuty7qXxa2DyhTXi0Rq8J/odRU6QOqI1p7GHrcJPCNNgEqWop7hbwPIg8ebBgX0BhpE+                 myBoxMDWWJS7ecY4K+FumdXGkpwOCRfe2GGwX/qLvZ3LZWGwFLffe0A62JBWmc6Lvacq5deAkkZ8Kx3QMdT=="  # noqa
+    verifier = Verifier(CERTIFICATE)
+    response = Response(RESPONSE)
+    assert response.verify(verifier) is False
+
+
+def test_bad_base64_response():
+    RESPONSE = "MTAyMDE3MDYzMDEyMzU0MDAwMDAwMDA"  # noqa
+    verifier = Verifier(CERTIFICATE)
+    response = Response(RESPONSE)
+    assert response.verify(verifier) is False
