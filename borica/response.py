@@ -23,4 +23,4 @@ class Response:
 
     @property
     def status_code(self):
-        return self.payload[0:2].decode()
+        return int(self.payload[51:53].decode())
