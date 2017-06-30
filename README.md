@@ -33,6 +33,6 @@ eBorica = str(request)
 ```
 verifier = Verifier(open('certificate.pem').read())
 response = Response(eBorica)
-assert response.verify(verifier) is True
+assert response.verify(verifier)
 assert response.status_code == 0
 ```
