@@ -31,6 +31,7 @@ def test_response():
     verifier = Verifier(CERTIFICATE)
     response = Response(RESPONSE)
     assert response.verify(verifier) is True
+    assert response.status_code == '10'
 
 
 def test_bad_signature_response():

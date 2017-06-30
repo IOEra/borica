@@ -12,8 +12,15 @@ class Response:
 
     def verify(self, verifier):
         try:
-            payload = self.response_decoded[0:len(self.response_decoded) - 128]
             signature = self.response_decoded[56:]
-            return verifier.verify(payload, signature)
-        except binascii.Error:
+            return verifier.verify(self.payload, signature)
+        except (binascii.Error, TypeError):
             return False
+
+    @property
+    def payload(self):
+        return self.response_decoded[0:len(self.response_decoded) - 128]
+
+    @property
+    def status_code(self):
+        return self.payload[0:2].decode()
