@@ -37,7 +37,7 @@ def test_response():
         year=2017, month=6, day=30, hour=12, minute=35, second=40)
     assert response.amount == 0.09
     assert response.terminal_id == 62161072
-    assert response.order_id == "61072123451234512341"
+    assert response.order_id == "123451234512341"
     assert response.status_code == 94
     assert response.protocol_version == "1.1"
 

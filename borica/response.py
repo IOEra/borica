@@ -44,7 +44,7 @@ class Response:
 
     @property
     def order_id(self):
-        return self._get_field(31, 51)
+        return self._get_field(36, 51)
 
     @property
     def protocol_version(self):
