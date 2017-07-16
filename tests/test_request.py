@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import datetime
 import pytest
 from borica import Request
@@ -16,7 +15,7 @@ def test_general_request_base64_formatting():
         transaction_timestamp=datetime.datetime(1970, 1, 1, 2, 0),
         terminal_id='12345678',
         order_id='12345678',
-        order_summary=u'Money for fun!'.encode('utf-8'),
+        order_summary='Money for fun!',
         signature=FakeSignature()
     )
     expected_request = (

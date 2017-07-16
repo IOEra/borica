@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 try:
     from urllib.parse import quote_plus
@@ -64,8 +63,8 @@ class Request:
 
     def __str__(self):
         signed_content = self.signature.sign(self.unsigned_content)
-        payload = self.unsigned_content.encode('utf-8') + signed_content
-        return quote_plus(b64encode(payload).decode('utf-8'))
+        payload = self.unsigned_content.encode('cp1251') + signed_content
+        return quote_plus(b64encode(payload).decode('cp1251'))
 
     @staticmethod
     def validate(value, of):
@@ -80,7 +79,7 @@ class Request:
     def fill(object, length, char=' ', right=False):
         truncated = str(object)[0:length]
         just = [truncated.ljust, truncated.rjust][right]
-        return just(length, str(char)).decode('utf-8')
+        return just(length, str(char))
 
     @property
     def unsigned_content(self):
@@ -90,7 +89,8 @@ class Request:
             self.fill(self.transaction_amount, 12, char='0', right=True),
             self.fill(self.terminal_id, 8),
             self.fill(self.order_id, 15),
-            self.fill(self.order_summary, 125),
+            self.fill(
+                self.order_summary.encode('cp1251').decode('cp1251'), 125),
             self.fill(self.language, 2),
             self.fill(self.protocol_version, 3),
             (self.fill(self.currency, 3)
