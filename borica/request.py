@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 try:
     from urllib.parse import quote_plus
@@ -79,7 +80,7 @@ class Request:
     def fill(object, length, char=' ', right=False):
         truncated = str(object)[0:length]
         just = [truncated.ljust, truncated.rjust][right]
-        return just(length, str(char))
+        return just(length, str(char)).decode('utf-8')
 
     @property
     def unsigned_content(self):
