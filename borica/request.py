@@ -64,8 +64,8 @@ class Request:
 
     def __str__(self):
         signed_content = self.signature.sign(self.unsigned_content)
-        payload = self.unsigned_content.encode('utf-8') + signed_content
-        return quote_plus(b64encode(payload).decode('utf-8'))
+        payload = self.unsigned_content.encode('cp1251') + signed_content
+        return quote_plus(b64encode(payload).decode('cp1251'))
 
     @staticmethod
     def validate(value, of):
@@ -80,7 +80,10 @@ class Request:
     def fill(object, length, char=' ', right=False):
         truncated = str(object)[0:length]
         just = [truncated.ljust, truncated.rjust][right]
-        return just(length, str(char)).decode('utf-8')
+        try:
+            return just(length, str(char)).decode('cp1251')
+        except AttributeError:
+            return just(length, str(char))
 
     @property
     def unsigned_content(self):
