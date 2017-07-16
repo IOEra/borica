@@ -52,7 +52,7 @@ class Request:
         self.transaction_amount = str(transaction_amount).replace('.', '')
         self.terminal_id = terminal_id
         self.order_id = order_id
-        self.order_summary = order_summary
+        self.order_summary = order_summary.encode('cp1251')
         self.language = str(language).upper()
         self.protocol_version = self.validate(
             str(protocol_version), of=self.PROTOCOL_VERSIONS)
@@ -78,6 +78,7 @@ class Request:
     @staticmethod
     def fill(object, length, char=' ', right=False):
         truncated = str(object)[0:length]
+        truncated = truncated.decode('cp1251')
         just = [truncated.ljust, truncated.rjust][right]
         return just(length, str(char))
 
@@ -90,7 +91,7 @@ class Request:
             self.fill(self.terminal_id, 8),
             self.fill(self.order_id, 15),
             self.fill(
-                self.order_summary.encode('cp1251').decode('cp1251'), 125),
+                self.order_summary, 125),
             self.fill(self.language, 2),
             self.fill(self.protocol_version, 3),
             (self.fill(self.currency, 3)
